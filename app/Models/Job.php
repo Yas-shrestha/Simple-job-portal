@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Job extends Model
+{
+    use HasFactory;
+    protected $table = 'job_listings';
+    protected $fillable = ['title', 'description', 'location', 'salary', 'user_id', 'img'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+}
