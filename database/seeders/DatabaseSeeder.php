@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Job;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,10 +17,23 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory(10)->create();
-        User::factory(1)->company()->create(); // This will create 5 companies
+        User::factory()->count(3)->create([
+            'role' => 'company',
+        ])->each(function ($user) {
+            // Create a company for each company user
+            $randomImageUrl = 'https://picsum.photos/600/400?random=' . rand(1, 1000);
+            $company = Company::create([
+                'user_id' => $user->id,
+                'name' => fake()->company,
+                'img' => $randomImageUrl,
+                'description' => fake()->paragraph,
+                'location' => fake()->city,
+            ]);
 
-        // Create some jobs (each job will be associated with a user)
-        Job::factory(10)->create();
+            // Create 5 job listings per company user via JobFactory
+            Job::factory()->count(5)->create([
+                'user_id' => $user->id,
+            ]);
+        });
     }
 }

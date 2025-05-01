@@ -72,9 +72,7 @@
                             </li>
                         </ul>
                     </li>
-                @endif
 
-                @if (Auth::user() && Auth::user()->role == 'company')
                     <li class="menu-item {{ Route::is('job.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="fa fa-folder" aria-hidden="true"></i>
@@ -84,6 +82,19 @@
                             <li class="menu-item">
                                 <a href="{{ route('job.index') }}" class="menu-link">
                                     <div data-i18n="Notifications">Manage</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item {{ Route::is('contact.show') ? 'active' : '' }}">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <div data-i18n="Account Settings">Applications</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('contact.show') }}" class="menu-link">
+                                    <div data-i18n="Notifications">View Application </div>
                                 </a>
                             </li>
                         </ul>

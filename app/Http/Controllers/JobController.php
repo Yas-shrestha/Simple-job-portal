@@ -23,6 +23,7 @@ class JobController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'img' => 'nullable',
+            'end_date' => 'nullable',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
             'salary' => 'required|numeric|min:0', // Ensure salary is a valid number
@@ -32,6 +33,7 @@ class JobController extends Controller
         $job->img = $request->img;
         $job->description = $request->description;
         $job->location = $request->location;
+        $job->end_date = $request->end_date;
         $job->salary = (float) $request->salary; // Convert salary to float to match decimal field
         $job->user_id = Auth::id();
         $job->save();
@@ -60,6 +62,7 @@ class JobController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'img' => 'nullable',
+            'end_date' => 'nullable',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
             'salary' => 'required|numeric|min:0', // Ensure salary is a valid number
@@ -69,6 +72,7 @@ class JobController extends Controller
         $job->description = $request->description;
         $job->img = $request->img;
         $job->location = $request->location;
+        $job->end_date = $request->end_date;
         $job->salary = (float) $request->salary; // Convert salary to float to match decimal field
         $job->user_id = Auth::id();
         $job->save();

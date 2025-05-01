@@ -40,6 +40,11 @@
                                                         value="{{ $job->location }}">
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label for="endDate" class="form-label">End Date</label>
+                                                    <input type="date" class="form-control" id="endDate"
+                                                        name="end_date" value="{{ $job->end_date }}">
+                                                </div>
+                                                <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Salary</label>
                                                     <input disabled type="number" class="form-control"
                                                         id="exampleInputEmail1" aria-describedby="emailHelp" name="salary"

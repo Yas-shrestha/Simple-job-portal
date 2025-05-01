@@ -19,12 +19,15 @@ class JobFactory extends Factory
     protected $model = Job::class;
     public function definition(): array
     {
+        $randomImageUrl = 'https://picsum.photos/600/400?random=' . rand(1, 1000);
         return [
-            'user_id' => User::factory(), // The job is associated with a user (employer)
-            'title' => $this->faker->jobTitle(),
-            'description' => $this->faker->paragraph(),
-            'location' => $this->faker->city(),
-            'salary' => $this->faker->numberBetween(30000, 100000),
+            'title' => fake()->jobTitle,
+            'description' => fake()->paragraph(3),
+            'location' => fake()->city,
+            'end_date' => fake()->dateTimeBetween('now', '+2 months')->format('Y-m-d'),
+            'salary' => fake()->numberBetween(25000, 80000),
+            'img' => $randomImageUrl, // or a path to a fake image
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -49,6 +49,12 @@
                                                         aria-describedby="textHelp" name="salary">
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label for="endDate" class="form-label">End Date</label>
+                                                    <input type="date" class="form-control" id="endDate"
+                                                        name="end_date">
+                                                </div>
+
+                                                <div class="mb-3">
                                                     <label for="exampleInputText1" class="form-label">Description</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
                                                 </div>

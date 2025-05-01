@@ -16,7 +16,14 @@
                         @foreach ($jobs as $job)
                             <div class="row g-0 my-2">
                                 <div class="col-md-4 ">
-                                    <img src="{{ asset('uploads/' . $job->img) }}" alt="..."
+
+                                    @php
+                                        $end = \Carbon\Carbon::parse($job->end_date);
+                                        $isExpired = $end->isPast();
+                                        $companyImg = $job->user->company->img;
+                                        $isUrl = filter_var($companyImg, FILTER_VALIDATE_URL); // checks if it's a web URL
+                                    @endphp
+                                    <img src="{{ $isUrl ? $companyImg : asset('uploads/' . $companyImg) }}" alt="..."
                                         class="img-fluid rounded-start"
                                         style="height: 200px; width: 100%; object-fit: cover; object-position: center;">
                                 </div>
@@ -31,6 +38,9 @@
                                                 </small></p>
                                         </div>
                                         <p class="card-text">{{ $job->description }}</p>
+                                        <span class="badge {{ $isExpired ? 'bg-danger' : 'bg-warning text-dark' }}">
+                                            {{ $isExpired ? 'Deadline Passed' : 'Apply Before: ' . $end->format('F j, Y') }}
+                                        </span>
                                         <div class="d-flex justify-content-between">
                                             <p class="card-text"><small class="text-muted">Last updated
                                                     {{ $job->updated_at->diffForHumans() }}</small></p>
